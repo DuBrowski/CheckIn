@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchFutureAppts, editFutureAppt } from '../../actions'
+import { fetchFutureAppts, editFutureAppt } from '../../actions';
+import { getMilTimeFromApptTime } from '../../utilities'
 
 import FutureTableHead from './FutureTableHead';
 import FutureTableRow from './FutureTableRow';
@@ -27,7 +28,7 @@ class FutureBoard extends React.Component {
             return <div>Loading...</div>
         }
         const rows = this.props.appts.sort((a, b) => {
-            return parseInt(a.FTime) > parseInt(b.FTime) ? 1 : -1;
+            return getMilTimeFromApptTime(a.FTime) > getMilTimeFromApptTime(b.FTime) ? 1 : -1;
         }).map(appt => {
             console.log(appt);
             return (
