@@ -1,0 +1,7 @@
+.portioned {
+  display: flex;
+}
+
+td {
+  padding: 2px !important;
+}
