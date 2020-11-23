@@ -7,12 +7,8 @@ import '../../styles/Board.css';
 import BoardRecordCreate from './forms/BoardRecordCreate';
 import TableHead from './TableHead';
 import TableRow from './TableRow';
-import Notes from './Notes';
 
 class Board extends React.Component {
-    // Client Id: 899682643968-33coqggoeaemm31h0rejkgssno6r2c73.apps.googleusercontent.com
-
-
     componentDidMount() {
         this.props.fetchAppts();
 
@@ -22,7 +18,6 @@ class Board extends React.Component {
         }, 3000);
         */
     }
-
 
     onValChange = vals => {
         this.props.editAppt(vals, vals.id);
@@ -52,7 +47,6 @@ class Board extends React.Component {
     }
 
     render() {
-        const alertStyle = {backgroundColor: 'red'};
         return (
             <React.Fragment>
                     <div>

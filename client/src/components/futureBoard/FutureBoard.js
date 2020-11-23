@@ -5,6 +5,7 @@ import { getMilTimeFromApptTime } from '../../utilities'
 
 import FutureTableHead from './FutureTableHead';
 import FutureTableRow from './FutureTableRow';
+import ScheduleLoader from './ScheduleLoader';
 
 class FutureBoard extends React.Component {
 
