@@ -10,6 +10,7 @@ class FutureTableHead extends React.Component {
                         <th>Dr</th>
                         <th>Time</th>
                         <th>Description</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
             </React.Fragment>

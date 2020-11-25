@@ -5,6 +5,7 @@ import Name from '../board/columns/Name';
 import Doctor from '../board/columns/Doctor';
 import FutureTime from './columns/FutureTime';
 import Description from '../board/columns/Description';
+import ActionButtons from './columns/ActionButtons';
 
 class FutureTableRow extends React.Component {
 
@@ -45,6 +46,7 @@ class FutureTableRow extends React.Component {
                 <Doctor onDoctorChange={this.onDoctorChange} doctor={this.props.appt.FDoctor}/>
                 <FutureTime onFutureTimeChange={this.onFutureTimeChange} time={this.props.appt.FTime}/>
                 <Description onDescriptionChange={this.onDescriptionChange} description={this.props.appt.FDescription}/>
+                <ActionButtons/>
             </tr>
         );
     }

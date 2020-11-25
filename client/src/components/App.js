@@ -6,7 +6,7 @@ import '../styles/Board.css'
 
 import Board from './board/Board';
 import Header from './Header';
-import FutureBoardCreate from './board/forms/FutureBoardCreate';
+import FutureBoardCreate from './futureBoard/forms/FutureBoardCreate';
 
 class App extends React.Component {
     render () {

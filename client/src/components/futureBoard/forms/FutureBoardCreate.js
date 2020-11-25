@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createFutureAppt } from '../../../actions';
 import FutureBoardForm from './FutureBoardForm';
-import FutureBoard from '../../futureBoard/FutureBoard';
-import ScheduleLoader from '../../futureBoard/ScheduleLoader';
+import FutureBoard from '../FutureBoard';
+import ScheduleLoader from '../ScheduleLoader';
 
 class FutureBoardCreate extends React.Component {
 
