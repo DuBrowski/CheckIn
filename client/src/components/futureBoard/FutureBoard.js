@@ -5,7 +5,6 @@ import { getMilTimeFromApptTime } from '../../utilities'
 
 import FutureTableHead from './FutureTableHead';
 import FutureTableRow from './FutureTableRow';
-import ScheduleLoader from './ScheduleLoader';
 
 class FutureBoard extends React.Component {
 
@@ -31,7 +30,6 @@ class FutureBoard extends React.Component {
         const rows = this.props.appts.sort((a, b) => {
             return getMilTimeFromApptTime(a.FTime) > getMilTimeFromApptTime(b.FTime) ? 1 : -1;
         }).map(appt => {
-            console.log(appt);
             return (
                 <FutureTableRow
                     onValChange={this.onValChange} 

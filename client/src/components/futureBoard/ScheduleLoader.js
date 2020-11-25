@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+import { createFutureAppt } from '../../actions';
+
 class ScheduleLoader extends React.Component {
 
     state = {
@@ -36,25 +39,24 @@ class ScheduleLoader extends React.Component {
             lastNameNext=false, 
             firstNameNext=false,
             descriptionNext=false,
-            appointments = [],
+            appointments = [],  
             cur = {};
     
         scheduleArray.forEach(val => {
     
             // Tests for having at least one character or is phone number
             if (/([a-zA-Z])+([ -~])*/.test(val) || isPhoneNumber(val)) {
-                console.log(`val: ${val}`);
                 if (lastNameNext ) {
                     cur.lastName= val;
                     lastNameNext = false;
                 } else if (firstNameNext) {
-                    cur.firstName= val
+                    cur.firstName= val;
                     firstNameNext = false;
                 } else if (descriptionNext) {
-                    cur.description = val
+                    cur.description = val;
                     descriptionNext = false;
                 } else if (/^([0-1]?[0-9]|2[0-3]):[0-5][0-9][a-z]$/.test(val)) { // Tests for time format
-                    cur.time = val;
+                    cur.time = val.replace(':','').slice(0,-1);
                     firstNameNext = true;
                 } else if (isPhoneNumber(val)) {
                     cur.phone = val;
@@ -62,16 +64,26 @@ class ScheduleLoader extends React.Component {
                 } else if (val === 'CANINE' || val === 'FELINE') {
                     descriptionNext = true;
                 } else if (val.slice(0,2) === 'RM') {
-                    lastNameNext = true
+                    lastNameNext = true;
                 }
                 if (this.fieldsFull(cur)) {
-                    console.log('fields are full');
                     appointments.push(cur);
-                    this.setState({appts:appointments});
                     cur = {};
                 }
             }
         });
+        this.setState({appts:appointments});
+        console.log(appointments);
+        this.props.createFutureAppt(this.formatFutureAppt(appointments[0]));
+    }
+
+    formatFutureAppt = (appt) => {
+        return {
+            FName: appt.firstName + appt.lastName,
+            FDoctor: '',
+            FTime: appt.time,
+            FDescription: appt.description,
+        }
     }
 
     fieldsFull = (obj) => {
@@ -110,14 +122,12 @@ class ScheduleLoader extends React.Component {
 
 // Removes HTML tags from str, replaces with "BUFFER_ZONE_7"
 const removeTags = (str) => {
-    if ((str===null) || (str===''))
-    return false;
-    else
-    str = str.toString();
+    if ((str===null) || (str==='')) return false;
+    else str = str.toString();
     return str.replace( /(<([^>]+)>)/ig, 'BUFFER_ZONE_7');
 }
 
 // Returns true if str is phone number format
 const isPhoneNumber = str => /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(str);
 
-export default ScheduleLoader;
+export default connect(null, { createFutureAppt })(ScheduleLoader);
